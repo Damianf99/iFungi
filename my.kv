@@ -1,0 +1,900 @@
+WindowManager:
+    MainWindow:
+    Quiz:
+    Encyclopedia:
+    CameraScreen:
+    MapScreen:
+    SaveLocation:
+    Login:
+    Register:
+    LocationsList:
+    Mushroom:
+    MushroomInfo:
+    FileManager:
+
+<MainWindow>:
+    name: "main"
+    btn1: btn1
+    btn2: btn2
+    btn3: btn3
+    btn4: btn4
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        cols:1
+        size_hint: (0.6, 0.7)
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+    Image:
+        source: "ifng.png"
+        pos_hint: {"x":0.00, "top":0.97}
+        size_hint_y: 0.3
+        allow_stretch: True
+
+    Label:
+        text: ""
+        font_name: "Century"
+        font_size: 30
+        color: "black"
+        pos_hint: {"x":0.01, "top":1.1}
+
+    RoundedButton:
+        id: btn1
+        text: "Rozpoznaj grzyba"
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.15, "top":0.6}
+        font_size: 20
+        bold: True
+        font_name: "Century"
+        color: "black"
+        on_release: 
+            root.press_btn1()
+
+    RoundedButton:
+        id: btn2
+        text: "Zapisz lokalizacje"
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.15, "top":0.45}
+        font_size: 20
+        bold: True
+        font_name: "Century"
+        color: "black"
+        on_release: 
+            root.press_btn2()
+
+    RoundedButton:
+        id: btn3
+        text: "Quiz"
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.15, "top":0.30}
+        font_size: 20
+        bold: True
+        font_name: "Century"
+        color: "black"
+        on_release: 
+            root.press_btn3()
+
+    RoundedButton:
+        id: btn4
+        text: "Encyklopedia"
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.15, "top":0.15}
+        font_size: 20
+        bold: True
+        font_name: "Century"
+        color: "black"
+        on_release: 
+            root.press_btn4()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+
+<Quiz>:
+    name: "quiz"
+    lab1: lab1
+    btn5: btn5
+    btn6: btn6
+    btn7: btn7
+    btn9: btn9
+    on_pre_enter: self.change_question()
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        cols:1
+    
+    Label:
+        id: lab1
+        text: "Aby rozpoczac quiz - wcisnij przycisk next"
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
+        font_size: 20
+        color: "#5C8E55"
+        pos_hint: {"x":0.01, "top":1.3}
+
+    RoundedButton:
+        id: btn5
+        text: ""
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.13, "top":0.6}
+        bold: True
+        font_name: "Century"
+        font_size:16
+        color: "black"
+        on_release: 
+            root.ans_1()
+
+    RoundedButton:
+        id: btn6
+        text: ""
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.13, "top":0.45}
+        bold: True
+        font_name: "Century"
+        font_size:16
+        color: "black"
+        on_release: 
+            root.ans_2()
+
+    RoundedButton:
+        id: btn7
+        text: ""
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.13, "top":0.3}
+        bold: True
+        font_name: "Century"
+        font_size:16
+        color: "black"
+        on_release:
+            root.ans_3()
+
+    RoundedButton:
+        id: btn9
+        text: "Next"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0.6, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:18
+        color: "black"
+        on_release: 
+            root.change_question()
+
+    RoundedButton:
+        id: btn10
+        text: "Exit"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0.1, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:18
+        color: "black"
+        on_release: 
+            root.quit_quiz()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<Encyclopedia>:
+    name: "encyclopedia"
+    container: container
+    on_pre_enter: self.add_buttons()
+
+    MDBoxLayout:
+        id: container
+        orientation: 'vertical'
+
+    RoundedButton:
+        id: btn10
+        text: "Cofnij"
+        size_hint: (0.3, 0.1)
+        pos_hint: {"x":0.65, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:18
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<CameraScreen>:
+    name: "camera_screen"
+    container: container
+    on_pre_enter: self.load_camera()
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        id: container
+        orientation: 'vertical'
+
+    RoundedButton:
+        id: btn11
+        text: "Cofnij"
+        size_hint: (0.3, 0.1)
+        pos_hint: {"x":0.65, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:18
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+
+    RoundedButton:
+        id: btn12
+        text: "Photo"
+        size_hint: (0.3, 0.1)
+        pos_hint: {"x":0.35, "top":0.25}
+        bold: True
+        font_name: "Century"
+        font_size:20
+        color: "black"
+        on_release: 
+            root.take_photo()
+
+    RoundedButton:
+        id: gallery
+        text: "Galeria"
+        size_hint: (0.3, 0.1)
+        pos_hint: {"x":0.05, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:18
+        color: "#efead8"
+        on_release: 
+            root.go_to_gallery()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<MapScreen>:
+    container: container
+    on_pre_enter: self.on_start()
+    MapView:
+        id: container
+        double_tap_zoom: True
+        lat: root.get_lat()
+        lon: root.get_lon()
+        zoom: 5
+
+        RoundedButton:
+            id: btn13
+            text: "Cofnij"
+            size_hint: (0.3, 0.05)
+            pos_hint: {"x":0.01, "top":0.12}
+            bold: True
+            font_name: "Century"
+            font_size:18
+            color: "#efead8"
+            on_release: 
+                root.go_back()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<SaveLocation>:
+    name: "save_location"
+    container: container
+    input1: input1
+    on_enter: self.initialize()
+    on_leave: self.clear_widgets()
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        id: container
+        cols:1
+
+    Label:
+        text: "Zapisz lokalizacje"
+        font_size: 30
+        font_name: "Century"
+        color: "black"
+        pos_hint: {"x":0.01, "top":1.4}
+
+    RoundedTextInput:
+        id: input1
+        hint_text:'Wprowadz nazwe lokalizacji (max 56 znakow)'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.705}
+        foreground_color: (0.3, 0.4, 0.5, 0.4)
+        multiline: True
+        size_hint: 0.95, 0.1
+
+    RoundedButton:
+        id: btn14
+        text: "Zapisz pozycje automatycznie"
+        text_size : self.width, None
+        halign: "center"
+        valign: "center"
+        size_hint: (0.4, 0.1)
+        pos_hint: {"x":0.08, "top":0.63}
+        bold: True
+        font_name: "Century"
+        font_size:15
+        color: "black"
+        on_release: 
+            root.save_location_automatically()
+
+    RoundedButton:
+        id: btn15
+        text: "Zapisz pozycje recznie"
+        text_size : self.width, None
+        halign: "center"
+        valign: "center"
+        size_hint: (0.4, 0.1)
+        pos_hint: {"x":0.53, "top":0.63}
+        bold: True
+        font_name: "Century"
+        font_size:15
+        color: "black"
+        on_release: 
+            root.save_manually()
+
+    RoundedButton:
+        id: btn16
+        text: "Cofnij"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0.68, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:15
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+
+    RoundedButton:
+        id: btn17
+        text: "Lista lokacji"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0.35, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:15
+        color: "black"
+        on_release: 
+            root.go_to_locations_list()
+
+    RoundedButton:
+        id: btn18
+        text: "Mapa"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0., "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:15
+        color: "black"
+        on_release: 
+            root.go_to_map()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+<RoundedTextInput@TextInput>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (255/255, 255/255, 255/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            size: (self.width - self.border[1] - self.border[3], self.height - self.border[0] - self.border[2])
+            pos: (self.x + self.border[3], self.y + self.border[0])
+            radius: [30]
+        Color:
+            rgba: self.foreground_color
+
+<Login>:
+    name: "login"
+    container: container
+    login_input: login_input
+    password_input: password_input
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        id: container
+        cols: 1
+
+    Image:
+        source: "ifng.png"
+        pos_hint: {"x":0.00, "top":0.95}
+        size_hint_y: 0.3
+        allow_stretch: True
+
+    Label:
+        id: label1
+        text: "Login:"
+        font_name: "Century"
+        font_size: 24
+        color: "#3f4f41"
+        pos_hint: {"x":-0.38, "top":1.11}
+
+    RoundedTextInput:
+        id: login_input
+        hint_text:'Login'
+        foreground_color: (0.3, 0.4, 0.5, 0.4)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+        multiline: False
+        size_hint: 0.9, 0.05
+
+
+    Label:
+        id: label2
+        text: "Haslo:"
+        font_name: "Century"
+        font_size: 24
+        color: "#3f4f41"
+        pos_hint: {"x":-0.38, "top": 0.99}
+
+    RoundedTextInput:
+        id: password_input
+        hint_text:'Password'
+        foreground_color: (0.3, 0.4, 0.5, 0.4)
+        password: True
+        pos_hint: {'center_x': 0.5, 'center_y': 0.43}
+        multiline: False
+        size_hint: 0.9, 0.05
+
+
+
+    RoundedButton:
+        id: btnlogin
+        text: "Zaloguj"
+        font_name: "Century"
+        font_size:20
+        size_hint: (0.6, 0.095)
+        pos_hint: {"x":0.20, "top":0.35}
+        bold: True
+        color: "black"
+        on_release:
+            root.log_in()
+
+    RoundedButton:
+        id: btnregister
+        text: "Zarejestruj sie"
+        size_hint: (0.6, 0.095)
+        pos_hint: {"x":0.20, "top":0.21}
+        font_name: "Century"
+        font_size:20
+        bold: True
+        color: "black"
+        border: [15, 15, 15, 15]
+        on_release: 
+            root.go_to_registration()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<RoundedTextInput@TextInput>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (255/255, 255/255, 255/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            size: (self.width - self.border[1] - self.border[3], self.height - self.border[0] - self.border[2])
+            pos: (self.x + self.border[3], self.y + self.border[0])
+            radius: [30]
+        Color:
+            rgba: self.foreground_color
+
+             
+<Register>:
+    name: "register"
+    container: container
+    login_input: login_input
+    password_input: password_input
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        id: container
+        cols: 1
+
+    Image:
+        source: "ifng.png"
+        pos_hint: {"x":0.00, "top":0.95}
+        size_hint_y: 0.3
+        allow_stretch: True
+
+    Label:
+        text: "Rejestracja"
+        font_size: 24
+        font_name: "Times"
+        color: "black"
+        pos_hint: {"x":0.0, "top":1.12}
+
+    Label:
+        id: label1
+        text: "Login:"
+        font_name: "Century"
+        font_size: 24
+        color: "#5F7161"
+        pos_hint: {"x":-0.38, "top":1.06}
+
+    RoundedTextInput:
+        id: login_input
+        hint_text:'Login'
+        foreground_color: (0.3, 0.4, 0.5, 0.4)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.50}
+        multiline: False
+        size_hint: 0.9, 0.05
+
+    Label:
+        id: label2
+        text: "Haslo:"
+        font_name: "Century"
+        font_size: 24
+        color: "#5F7161"
+        pos_hint: {"x":-0.38, "top": 0.94}
+
+    RoundedTextInput:
+        id: password_input
+        hint_text:'Password'
+        password: True
+        foreground_color: (0.3, 0.4, 0.5, 0.4)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.38}
+        multiline: False
+        size_hint: 0.9, 0.05
+
+    RoundedButton:
+        id: btnregister
+        text: "Zarejestruj sie"
+        font_name: "Century"
+        size_hint: (0.5, 0.1)
+        pos_hint: {"x":0.25, "top":0.32}
+        bold: True
+        color: "black"
+        on_release: 
+            root.register_account()
+
+    RoundedButton:
+        id: btnback
+        text: "Cofnij"
+        font_name: "Century"
+        size_hint: (0.2, 0.075)
+        pos_hint: {"x":0.75, "top":0.1}
+        bold: True
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<RoundedTextInput@TextInput>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (255/255, 255/255, 255/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            size: (self.width - self.border[1] - self.border[3], self.height - self.border[0] - self.border[2])
+            pos: (self.x + self.border[3], self.y + self.border[0])
+            radius: [30]
+        Color:
+            rgba: self.foreground_color
+
+<LocationsList>:
+    name: "locations_list"
+    container: container
+    on_pre_enter: self.add_buttons()
+
+    MDBoxLayout:
+        id: container
+        orientation: 'vertical'
+
+    RoundedButton:
+        id: btn_go_back
+        text: "Cofnij"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0.65, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size:18
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<Mushroom>:
+    name: "mushroom"
+    container: container
+    name_label: name_label
+    edible_label: edible_label
+    on_pre_enter: self.add_background_features()
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        id: container
+        cols: 1
+
+    Label:
+        id: name_label
+        text: "Nazwa grzyba"
+        font_name: "Century"
+        font_size: 30
+        color: "black"
+        pos_hint: {"x":0.01, "top":1.10}
+
+    Label:
+        id: edible_label
+        text: "Trujacy"
+        font_name: "Century"
+        font_size: 15
+        color: "red"
+        pos_hint: {"x":0.01, "top":1.05}
+
+    RoundedButton:
+        id: btn2
+        text: "Opis"
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.15, "top":0.52}
+        bold: True
+        font_name: "Century"
+        font_size: 20
+        color: "black"
+        on_release: 
+            root.go_to_description()
+
+    RoundedButton:
+        id: btn3
+        text: "Wystepowanie"
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.15, "top":0.39}
+        bold: True
+        font_name: "Century"
+        font_size: 20
+        color: "black"
+        on_release: 
+            root.go_to_mushroom_location()
+
+    RoundedButton:
+        id: btn4
+        text: "Klasyfikacja"
+        size_hint: (0.7, 0.1)
+        pos_hint: {"x":0.15, "top":0.26}
+        bold: True
+        font_name: "Century"
+        font_size: 20
+        color: "black"
+        on_release: 
+            root.go_to_classification()
+
+    RoundedButton:
+        id: btn_go_back
+        text: "Cofnij"
+        size_hint: (0.3, 0.1)
+        pos_hint: {"x":0.65, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size: 20
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<MushroomInfo>:
+    name: "mushroom_info"
+    container: container
+    on_pre_enter: self.add_background_features()
+
+    MDBoxLayout:
+        id: container
+        orientation: 'vertical'
+
+    RoundedButton:
+        id: btn_go_back
+        text: "Cofnij"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0.65, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size: 18
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
+
+<FileManager>:
+    name: "file_manager"
+    container: container
+    on_pre_enter: self.init_widget()
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 234/255, 216/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        id: container
+        orientation: 'vertical'
+        FileChooserIconView:
+            id: file_chooser
+            color: "black"
+            orientation: 'vertical'
+            on_selection: root.selected(file_chooser.selection)
+        Label:
+            size_hint_y: None
+            height: 100
+
+    RoundedButton:
+        id: btn_go_back
+        text: "Cofnij"
+        size_hint: (0.3, 0.075)
+        pos_hint: {"x":0.65, "top":0.12}
+        bold: True
+        font_name: "Century"
+        font_size: 18
+        color: "#efead8"
+        on_release: 
+            root.go_back()
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (109/255, 139/255, 116/255, 0.7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[30]
