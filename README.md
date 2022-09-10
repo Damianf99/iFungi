@@ -24,3 +24,7 @@ As part of the work, it would be necessary to create a convenient mobile applica
 - For sending and receiving information from the trained model engine - MultipartEncoder from requests_toolbelt module + json for formatting data.
 - For receiving and sending requests - Flask module
 - For training the model and all the other operations within the model porcessing - TensorFlow module
+
+# Additional information
+
+There are missing certain pieces of code due to the safety reasons. There were some encrypting parts and I didn't want to reveal these information because someone could have already used those ideas in their official projects. Unfortunately due to the enormous size of the model I was unable to provide the directory with the necessary model data. If you'd like to see the app itself - please go into the Screenshots directory to have a little insight of the app and its functionalities. If requested - I might share the whole project depending on the reason.
